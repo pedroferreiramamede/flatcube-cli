@@ -1,0 +1,15 @@
+- classe cubo
+ 	- mecanismo  para atualizar 
+- classe face
+ 
+	método
+	- girar(sentido)
+	atributos
+	- matriz 9 posições (usar um vetor)
+	- cor 
+	
+
+https://jem.unifesspa.edu.br/images/Anais/v1_2015/CC_20150933002_ARTIGO_TEORIA_DE_GRUPOS.pdf
+ncurses
+static vs dinamic linkage - shared libraries
+https://www.cprogramming.com/tutorial/shared-libraries-linux-gcc.html
