@@ -39,17 +39,42 @@ int Face::setColor(Colors faceColor0, Colors faceColor1, Colors faceColor2,
     faceColors[8] = faceColor8;
 }
 
-/*
-int main(int argc, char **argv)
+int Face::rotateFace(char orientation)
 {
-    Face faceBranca(BRANCO, BRANCO, BRANCO, BRANCO, BRANCO, BRANCO, BRANCO, BRANCO, BRANCO);
+/* Rotate right:        Rotate left:
 
-    faceBranca.setColor(0, AMARELO);
-    faceBranca.setColor(2, VERMELHO);
-    faceBranca.setColor(AZUL, AZUL, AZUL, AZUL, AZUL, AZUL, AZUL, AZUL, AZUL);
+      0 1 2    6 3 0     0 1 2    2 5 8
+      3 4 5 -> 7 4 1     3 4 5 -> 1 4 7
+      6 7 8    8 5 2     6 7 8    0 3 6
+*/    
 
-    std::cout << faceBranca.getColor(0) << " " << faceBranca.getColor(1) << " " << faceBranca.getColor(2) << std::endl;   
-    std::cout << faceBranca.getColor(3) << " " << faceBranca.getColor(4) << " " << faceBranca.getColor(5) << std::endl;
-    std::cout << faceBranca.getColor(6) << " " << faceBranca.getColor(7) << " " << faceBranca.getColor(8) << std::endl;
+    //first, copy all elements of array into other
+    Colors tempfaceColor[9];
+    for(int i = 0; i < 10; i++){
+        tempfaceColor[i] = faceColors[i];
+    }
+
+    //rotate right
+    if(orientation == 'r'){
+        faceColors[0] = tempfaceColor[6]; 
+        faceColors[1] = tempfaceColor[3];
+        faceColors[2] = tempfaceColor[0];
+        faceColors[3] = tempfaceColor[7];
+        faceColors[5] = tempfaceColor[1];
+        faceColors[6] = tempfaceColor[8];
+        faceColors[7] = tempfaceColor[5];
+        faceColors[8] = tempfaceColor[2];
+    }
+
+    //rotate left
+    if(orientation == 'l'){
+        faceColors[0] = tempfaceColor[2];
+        faceColors[1] = tempfaceColor[5];
+        faceColors[2] = tempfaceColor[8];
+        faceColors[3] = tempfaceColor[1];
+        faceColors[5] = tempfaceColor[7];
+        faceColors[6] = tempfaceColor[0];
+        faceColors[7] = tempfaceColor[3];
+        faceColors[8] = tempfaceColor[6];
+    }
 }
-*/

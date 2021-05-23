@@ -13,10 +13,9 @@ enum Colors
 
 class Face
 {
-//private:
-public:
+private:
     enum Colors faceColors[9];
-//public:
+public:
     Face(Colors, Colors, Colors, Colors, Colors, Colors, Colors, Colors, Colors);
     Colors getColor(int);
     int setColor(int, Colors);
