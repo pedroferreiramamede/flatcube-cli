@@ -16,12 +16,29 @@ Face::Face(Colors faceColor0, Colors faceColor1, Colors faceColor2,
     faceColors[8] = faceColor8;
 }
 
+Face::Face(Colors color)
+{
+    for(int i = 0; i < 10; i++)
+        faceColors[i] = color;
+}
+
+Face::Face()
+{
+
+}
+
 Colors Face::getColor(int pieceNumber){
     return faceColors[pieceNumber];
 }
 
 int Face::setColor(int pieceNumber, Colors color){
     faceColors[pieceNumber] = color;
+}
+
+int Face::setColor(Colors color)
+{   
+    for(int i = 0; i < 10; i++)
+        faceColors[i] = color;
 }
 
 int Face::setColor(Colors faceColor0, Colors faceColor1, Colors faceColor2,

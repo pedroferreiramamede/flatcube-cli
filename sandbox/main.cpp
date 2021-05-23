@@ -1,26 +1,25 @@
 #include <iostream>
 #include "Face.hpp"
+#include "Cube.hpp"
 
 int main(int argc, char **argv)
 {
-    Face faceBranca(BRANCO, BRANCO, BRANCO, AZUL, AZUL, AZUL, VERDE, VERDE, VERDE);
+    Cube cubo;
+    cubo.faceBranca.setColor(AZUL);
 
-    //faceBranca.setColor(0, AMARELO);
-    //faceBranca.setColor(2, VERMELHO);
-    //faceBranca.setColor(AZUL, AZUL, AZUL, AZUL, AZUL, AZUL, AZUL, AZUL, AZUL);
+    std::cout << cubo.faceBranca.getColor(0) << " " << cubo.faceBranca.getColor(1) << " " << cubo.faceBranca.getColor(2) << std::endl;   
+    std::cout << cubo.faceBranca.getColor(3) << " " << cubo.faceBranca.getColor(4) << " " << cubo.faceBranca.getColor(5) << std::endl;
+    std::cout << cubo.faceBranca.getColor(6) << " " << cubo.faceBranca.getColor(7) << " " << cubo.faceBranca.getColor(8) << std::endl;
 
-    std::cout << faceBranca.getColor(0) << " " << faceBranca.getColor(1) << " " << faceBranca.getColor(2) << std::endl;   
-    std::cout << faceBranca.getColor(3) << " " << faceBranca.getColor(4) << " " << faceBranca.getColor(5) << std::endl;
-    std::cout << faceBranca.getColor(6) << " " << faceBranca.getColor(7) << " " << faceBranca.getColor(8) << std::endl;
+    //faceBranca.rotateFace('r');
+    //faceBranca.rotateFace('l');
+    //faceBranca.rotateFace('l');
+    //faceBranca.rotateFace('l');
 
-    faceBranca.rotateFace('r');
-//    faceBranca.rotateFace('l');
-//    faceBranca.rotateFace('l');
-//    faceBranca.rotateFace('l');
-
-    std::cout << faceBranca.getColor(0) << " " << faceBranca.getColor(1) << " " << faceBranca.getColor(2) << std::endl;
-    std::cout << faceBranca.getColor(3) << " " << faceBranca.getColor(4) << " " << faceBranca.getColor(5) << std::endl;
-    std::cout << faceBranca.getColor(6) << " " << faceBranca.getColor(7) << " " << faceBranca.getColor(8) << std::endl;
+//    std::cout << std::endl;
+//    std::cout << cubo.faceBranca.getColor(0) << " " << cubo.faceBranca.getColor(1) << " " << cubo.faceBranca.getColor(2) << std::endl;
+//    std::cout << cubo.faceBranca.getColor(3) << " " << cubo.faceBranca.getColor(4) << " " << cubo.faceBranca.getColor(5) << std::endl;
+//    std::cout << cubo.faceBranca.getColor(6) << " " << cubo.faceBranca.getColor(7) << " " << cubo.faceBranca.getColor(8) << std::endl;
 
 }
 
