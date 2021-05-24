@@ -24,6 +24,7 @@ public:
     int setColor(Colors, Colors, Colors, Colors, Colors, Colors, Colors, Colors, Colors);
     int setColor(Colors);
     int rotateFace(char orientation);
+    int printFace();
 };
 
 #endif //FACE_HPP

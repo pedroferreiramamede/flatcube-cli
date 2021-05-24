@@ -18,7 +18,7 @@ Face::Face(Colors faceColor0, Colors faceColor1, Colors faceColor2,
 
 Face::Face(Colors color)
 {
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 9; i++)
         faceColors[i] = color;
 }
 
@@ -37,7 +37,7 @@ int Face::setColor(int pieceNumber, Colors color){
 
 int Face::setColor(Colors color)
 {   
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 9; i++)
         faceColors[i] = color;
 }
 
@@ -94,4 +94,41 @@ int Face::rotateFace(char orientation)
         faceColors[7] = tempfaceColor[3];
         faceColors[8] = tempfaceColor[6];
     }
+}
+
+int Face::printFace()
+{
+    for(int i = 0; i < 9; i++){
+        Colors pieceColor = this-> getColor(i);
+        switch(pieceColor)
+        {
+          case BRANCO:
+            std::cout << "\033[0;33;107m" << "  " << "\033[0m" << "  ";
+            break; 
+
+          case AZUL:
+            std::cout << "\033[0;33;44m" << "  " << "\033[0m" << "  ";
+            break;
+
+          case VERDE:
+            std::cout << "\033[0;33;42m" << "  " << "\033[0m" << "  ";
+            break;
+
+          case VERMELHO:
+            std::cout << "\033[0;33;41m" << "  " << "\033[0m" << "  ";
+            break;
+
+          case LARANJA:
+            std::cout << "\033[0;33;105m" << "  " << "\033[0m" << "  ";
+            break;
+
+          case AMARELO:
+            std::cout << "\033[0;33;43m" << "  " << "\033[0m" << "  ";
+            break;
+   
+        }
+        if(i == 2 || i == 5 || i == 8)
+            std::cout << std::endl << std::endl;    
+    }
+
 }

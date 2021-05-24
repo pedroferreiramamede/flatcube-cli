@@ -8,11 +8,11 @@ class Cube
 public:
     Cube();
     Face faceBranca;
-//    Face faceAzul(Colors);
-//    Face faceVerde(Colors);
-//    Face faceVermelha(Colors);
-//    Face faceLaranja(Colors);
-//    Face faceAmarela(Colors);
+    Face faceAzul;
+    Face faceVerde;
+    Face faceVermelha;
+    Face faceLaranja;
+    Face faceAmarela;
 };
 
 #endif

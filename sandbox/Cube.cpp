@@ -3,5 +3,5 @@
 
 Cube::Cube()
 {
-    std::cout << "calling constructor" << std::endl;
+   // std::cout << "calling constructor" << std::endl;
 }
