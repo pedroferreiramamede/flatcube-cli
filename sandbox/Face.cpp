@@ -56,6 +56,7 @@ int Face::setColor(Colors faceColor0, Colors faceColor1, Colors faceColor2,
     faceColors[8] = faceColor8;
 }
 
+#if 0
 int Face::rotateFace(char orientation)
 {
 /* Rotate right:        Rotate left:
@@ -94,11 +95,48 @@ int Face::rotateFace(char orientation)
         faceColors[7] = tempfaceColor[3];
         faceColors[8] = tempfaceColor[6];
     }
+
+    //Nowm lets change the other faces
+        Colors pieceColor = this-> getColor(4);
+        switch(pieceColor)
+        {
+          case BRANCO:
+            std::cout << "Rotating White Face" << std::endl;
+            break;
+
+          case AZUL:
+            std::cout << "Rotating Blue Face" << std::endl;
+            break;
+
+          case VERDE:
+            std::cout << "Rotating Green Face" << std::endl;
+            break;
+
+          case VERMELHO:
+            std::cout << "Rotating Red Face" << std::endl;
+            break;
+
+          case LARANJA:
+            std::cout << "Rotating Orange Face" << std::endl;
+            break;
+
+          case AMARELO:
+            std::cout << "Rotating Yellow Face" << std::endl;
+            break;
+
+        }
+    
 }
+#endif
 
 int Face::printFace()
 {
-    for(int i = 0; i < 9; i++){
+   
+    for(int i = 0; i < 9; i++)
+    {
+        if(i == 0 || i == 3 || i == 6)
+            std::cout << "                               "; 
+        
         Colors pieceColor = this-> getColor(i);
         switch(pieceColor)
         {
@@ -128,7 +166,8 @@ int Face::printFace()
    
         }
         if(i == 2 || i == 5 || i == 8)
-            std::cout << std::endl << std::endl;    
+            std::cout << std::endl << std::endl;
     }
+    std::cout << std::endl;
 
 }

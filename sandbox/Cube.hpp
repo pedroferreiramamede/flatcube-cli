@@ -7,6 +7,7 @@ class Cube
 {
 public:
     Cube();
+    int InitializeCube();
     Face faceBranca;
     Face faceAzul;
     Face faceVerde;

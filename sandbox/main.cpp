@@ -1,20 +1,22 @@
 #include <iostream>
+#include <stdio.h>
 #include "Face.hpp"
 #include "Cube.hpp"
 
-#define DEBUG_FACE
+//#define DEBUG_FACE
 
 int main(int argc, char **argv)
 {
-    Cube cubo;
+    Cube cubo; 
+    cubo.InitializeCube();
     //Initialize all faces
-    cubo.faceBranca.setColor(BRANCO);
+/*    cubo.faceBranca.setColor(BRANCO);
     cubo.faceAzul.setColor(AZUL);
     cubo.faceVerde.setColor(VERDE);
     cubo.faceVermelha.setColor(VERMELHO);
     cubo.faceLaranja.setColor(LARANJA);
     cubo.faceAmarela.setColor(AMARELO);
-
+*/
 #ifdef DEBUG_FACE
     cubo.faceBranca.setColor(BRANCO);
     cubo.faceBranca.setColor(2,AZUL);
@@ -26,20 +28,61 @@ int main(int argc, char **argv)
     cubo.faceBranca.printFace();
 #endif
 
-    //std::cout << "\033[0;33;42m" << cubo.faceBranca.getColor(0) << "\033[0m" << " " << cubo.faceBranca.getColor(1) << " " << cubo.faceBranca.getColor(2) << std::endl;   
-    //std::cout << color::rize( cubo.faceBranca.getColor(0), "Yellow", "Green" )  << " " << cubo.faceBranca.getColor(1) << " " << cubo.faceBranca.getColor(2) << std::endl;   
-    //std::cout << cubo.faceBranca.getColor(3) << " " << cubo.faceBranca.getColor(4) << " " << cubo.faceBranca.getColor(5) << std::endl;
-    //std::cout << cubo.faceBranca.getColor(6) << " " << cubo.faceBranca.getColor(7) << " " << cubo.faceBranca.getColor(8) << std::endl;
-
-    //cubo.faceBranca.rotateFace('r');
+    cubo.faceBranca.rotateFace('r');
     //faceBranca.rotateFace('l');
     //faceBranca.rotateFace('l');
     //faceBranca.rotateFace('l');
+    
+    /* First, clear the screen */
+    printf("\033[2J");
+    printf("\033[%d;%dH", 0, 0);
 
-    //std::cout << std::endl;
-    //std::cout << cubo.faceBranca.getColor(0) << " " << cubo.faceBranca.getColor(1) << " " << cubo.faceBranca.getColor(2) << std::endl;
-    //std::cout << cubo.faceBranca.getColor(3) << " " << cubo.faceBranca.getColor(4) << " " << cubo.faceBranca.getColor(5) << std::endl;
-    //std::cout << cubo.faceBranca.getColor(6) << " " << cubo.faceBranca.getColor(7) << " " << cubo.faceBranca.getColor(8) << std::endl;
+    int faceNumber = 0;
+    while(1)
+    {
+        std::cout << std::endl;
+        std::cout << "  _/  _/    _/  _/    _/  _/    _/  _/    _/  _/    _/  _/   _/  _/   _/  _/  " << std::endl;
+        std::cout << "     _/  _/    _/  _/    _/  _/    _/  _/    _/  _/    _/  _/   _/  _/   _/  _/" << std::endl;
+        std::cout << "  _/  _/    _/  _/    _/  _/    _/  _/    _/  _/    _/  _/   _/  _/   _/  _/  " << std::endl;;
+        std::cout << "            __ _       _                _                         _ _         " << std::endl;
+        std::cout << " |         / _| | __ _| |_    ___ _   _| |__   ___            ___| (_)        |" << std::endl;
+        std::cout << " |        | |_| |/ _` | __|  / __| | | | '_ \\ / _ \\  _____   / __| | |        |" << std::endl;
+        std::cout << " |        |  _| | (_| | |_  | (__| |_| | |_) |  __/ |_____| | (__| | |        |" << std::endl;
+        std::cout << " |        |_| |_|\\__,_|___|  \\___|\\__,_|_.__/ \\___|          \\___|_|_|        |" << std::endl << std::endl; 
+        std::cout << " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- " << std::endl;
+        std::cout << " -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;
+        //std::cout << "   _/  _/    _/  _/    _/  _/    _/  _/    _/  _/    _/  _/   _/  _/   _/  _/" << std::endl;  
+        //std::cout << "_/  _/    _/  _/    _/  _/    _/  _/    _/  _/    _/  _/   _/  _/   _/  _/  " << std::endl;
+        std::cout << std::endl << std::endl;
 
+        switch(faceNumber)
+        {
+          case 0:
+             cubo.faceBranca.printFace();
+             break;
+          case 1:
+             cubo.faceAzul.printFace();
+             break;
+          case 2:
+             cubo.faceVerde.printFace();
+             break;
+          case 3:
+             cubo.faceVermelha.printFace();
+             break;
+          case 4:
+             cubo.faceLaranja.printFace();
+             break;
+          case 5:
+             cubo.faceAmarela.printFace();
+             break;
+        }        
+
+        std::cout << "Escolha a face que deseja ver(0-5): " << std::endl;
+        std::cin >> faceNumber;
+        //std::cout.flush(); 
+        printf("\033[2J");
+        printf("\033[%d;%dH", 0, 0);
+        std::cout<<std::endl; 
+    }
 }
 
