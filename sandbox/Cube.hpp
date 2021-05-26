@@ -8,6 +8,8 @@ class Cube
 public:
     Cube();
     int InitializeCube();
+    int rotateFace(Colors, char);
+
     Face faceBranca;
     Face faceAzul;
     Face faceVerde;

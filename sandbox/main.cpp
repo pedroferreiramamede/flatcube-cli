@@ -3,7 +3,7 @@
 #include "Face.hpp"
 #include "Cube.hpp"
 
-//#define DEBUG_FACE
+#define DEBUG_FACE
 
 int main(int argc, char **argv)
 {
@@ -27,8 +27,9 @@ int main(int argc, char **argv)
     cubo.faceBranca.setColor(0, VERMELHO);
     cubo.faceBranca.printFace();
 #endif
-
-    cubo.faceBranca.rotateFace('r');
+    
+//    cubo.rotateFace(BRANCO, 'l');
+    //cubo.faceBranca.rotateFace('r');
     //faceBranca.rotateFace('l');
     //faceBranca.rotateFace('l');
     //faceBranca.rotateFace('l');
