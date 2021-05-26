@@ -157,7 +157,7 @@ int Face::printFace()
             break;
 
           case LARANJA:
-            std::cout << "\033[0;33;105m" << "  " << "\033[0m" << "  ";
+            std::cout << "\033[0;33;45m" << "  " << "\033[0m" << "  ";
             break;
 
           case AMARELO:

@@ -28,8 +28,11 @@ int main(int argc, char **argv)
     cubo.faceBranca.printFace();
 #endif
     
-    cubo.rotateFace(BRANCO, 'l');
+/*    cubo.rotateFace(BRANCO, 'l');
     cubo.rotateFace(VERDE, 'r');
+    cubo.rotateFace(AMARELO, 'l');
+    cubo.rotateFace(LARANJA, 'r');
+*/
     //cubo.faceBranca.rotateFace('r');
     //faceBranca.rotateFace('l');
     //faceBranca.rotateFace('l');
@@ -39,7 +42,8 @@ int main(int argc, char **argv)
     printf("\033[2J");
     printf("\033[%d;%dH", 0, 0);
 
-    int faceNumber = 0;
+    char actionSelect = 's';
+    char faceSelected = 's';
     while(1)
     {
         std::cout << std::endl;
@@ -57,34 +61,112 @@ int main(int argc, char **argv)
         //std::cout << "_/  _/    _/  _/    _/  _/    _/  _/    _/  _/    _/  _/   _/  _/   _/  _/  " << std::endl;
         std::cout << std::endl << std::endl;
 
-        switch(faceNumber)
+        switch(faceSelected)
         {
-          case 0:
+          case 's':
+          case 'S':
              cubo.faceBranca.printFace();
              break;
-          case 1:
+          case 'w':
+          case 'W':
              cubo.faceAzul.printFace();
              break;
-          case 2:
+          case 'x':
+          case 'X':
              cubo.faceVerde.printFace();
              break;
-          case 3:
+          case 'd':
+          case 'D':
              cubo.faceVermelha.printFace();
              break;
-          case 4:
+          case 'a':
+          case 'A':
              cubo.faceLaranja.printFace();
              break;
-          case 5:
+          case 'f':
+          case 'F':
              cubo.faceAmarela.printFace();
              break;
         }        
 
-        std::cout << "Escolha a face que deseja ver(0-5): " << std::endl;
-        std::cin >> faceNumber;
-        //std::cout.flush(); 
+        std::cout << "Escolha a face que deseja ver ou < > para rotacionar: " << std::endl;
+       
+        std::cout << "   " << "\033[0;37;44m" << " W " << "\033[0m" << std::endl;
+        std::cout << "\033[0;37;45m"  << " A " << "\033[0m" << "\033[0;30;107m" << " S " << "\033[0m" 
+                  << "\033[0;37;41m"  << " D " << "\033[0m" << "\033[0;37;43m" << " F " << "\033[0m" << std::endl;
+        std::cout << "   " << "\033[0;37;42m" << " X " << "\033[0m" << std::endl;
+#if 0  
+        std::cout << "\033[0;30;107m" << " W " << "\033[0m" << "\033[0;37;42m" << " G " << "\033[0m" <<
+                     "\033[0;37;41m"  << " R " << "\033[0m" << "\033[0;37;44m" << " B " << "\033[0m" <<
+                     "\033[0;37;45m"  << " O " << "\033[0m" << "\033[0;37;43m" << " Y " << "\033[0m" << std::endl;        
+#endif
+     
+       std::cin >> actionSelect;
+        
+        if(actionSelect == '<'){
+            switch(faceSelected)
+            {
+              case 's':
+              case 'S':
+                 cubo.rotateFace(BRANCO, 'l');
+                 break;
+              case 'w':
+              case 'W':
+                 cubo.rotateFace(AZUL, 'l');
+                 break;
+              case 'x':
+              case 'X':
+                 cubo.rotateFace(VERDE, 'l');
+                 break;
+              case 'd':
+              case 'D':
+                 cubo.rotateFace(VERMELHO, 'l');
+                 break;
+              case 'a':
+              case 'A':
+                 cubo.rotateFace(LARANJA, 'l');
+                 break;
+              case 'f':
+              case 'F':
+                 cubo.rotateFace(AMARELO, 'l');
+                 break;
+            }    
+        }
+        else if(actionSelect == '>'){
+            switch(faceSelected)
+            {
+              case 's':
+              case 'S':
+                 cubo.rotateFace(BRANCO, 'r');
+                 break;
+              case 'w':
+              case 'W':
+                 cubo.rotateFace(AZUL, 'r');
+                 break;
+              case 'x':
+              case 'X':
+                 cubo.rotateFace(VERDE, 'r');
+                 break;
+              case 'd':
+              case 'D':
+                 cubo.rotateFace(VERMELHO, 'r');
+                 break;
+              case 'a':
+              case 'A':
+                 cubo.rotateFace(LARANJA, 'r');
+                 break;
+              case 'f':
+              case 'F':
+                 cubo.rotateFace(AMARELO, 'r');
+                 break;
+            }
+
+        }else{
+            faceSelected = actionSelect;
+        } 
+   
         printf("\033[2J");
         printf("\033[%d;%dH", 0, 0);
-        std::cout<<std::endl; 
     }
 }
 
