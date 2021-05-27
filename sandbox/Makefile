@@ -4,7 +4,8 @@ CXX := g++
 all:
 	$(CXX) Face.cpp -o Face.o -c
 	$(CXX) Cube.cpp -o Cube.o -c
-	$(CXX) main.cpp Face.o Cube.o -o $(appfile)
+	$(CXX) UI.cpp -o UI.o -c
+	$(CXX) main.cpp Face.o Cube.o UI.o -o $(appfile)
 
 clean:
 	rm *.o
