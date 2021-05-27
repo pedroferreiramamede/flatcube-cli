@@ -12,6 +12,9 @@ int startUI(Cube &cubo)
     char faceSelected = 's';
     while(1)
     {
+        printf("\033[2J");
+        printf("\033[%d;%dH", 0, 0);
+
         std::cout << " +------------------------------------------------------------------------------+ " <<std::endl;
         std::cout << " | _/  _/    _/  _/    _/  _/    _/  _/    _/  _/    _/  _/   _/  _/   _/  _/   | " << std::endl;
         std::cout << " |   _/  _/    _/  _/    _/  _/    _/  _/    _/  _/    _/  _/   _/  _/   _/  _/ | " << std::endl;
@@ -56,16 +59,23 @@ int startUI(Cube &cubo)
         }        
 
         std::cout << " |                                                                              | " << std::endl;
-        std::cout << "Escolha a face que deseja ver ou < > para rotacionar: " << std::endl;
-       
-        std::cout << "   " << "\033[0;37;44m" << " W " << "\033[0m" << std::endl;
-        std::cout << "\033[0;37;45m"  << " A " << "\033[0m" << "\033[0;30;107m" << " S " << "\033[0m" 
-                  << "\033[0;37;41m"  << " D " << "\033[0m" << "\033[0;37;43m" << " F " << "\033[0m" << std::endl;
-        std::cout << "   " << "\033[0;37;42m" << " X " << "\033[0m" << std::endl;
+        std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
+        std::cout << " | Escolha a face que deseja ver ou < > para rotacionar:                        | " << std::endl;
+        std::cout << " +-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -+ " << std::endl;
+        std::cout << " |                                                                              | " << std::endl;
+        std::cout << " |     " << "\033[0;37;44m" << " W " << "\033[0m" <<
+                     "                                                                      |" << std::endl;
+        std::cout << " |  \033[0;37;45m"  << " A " << "\033[0m" << "\033[0;30;107m" << " S " << "\033[0m" 
+                  << "\033[0;37;41m"  << " D " << "\033[0m" << "\033[0;37;43m" << " F " << "\033[0m" << 
+                     "                                                                | " << std::endl;
+        std::cout << " |     " << "\033[0;37;42m" << " X " << "\033[0m" << 
+                     "                                                                      |" << std::endl;
+        std::cout << " |                                                                              | " << std::endl;
+        std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
      
         std::cin >> actionSelect;
         
-        if(actionSelect == '<'){
+        if(actionSelect == '<' || actionSelect == ','){
             switch(faceSelected)
             {
               case 's':
@@ -94,7 +104,7 @@ int startUI(Cube &cubo)
                  break;
             }    
         }
-        else if(actionSelect == '>'){
+        else if(actionSelect == '>' || actionSelect == '.'){
             switch(faceSelected)
             {
               case 's':
@@ -123,11 +133,20 @@ int startUI(Cube &cubo)
                  break;
             }
 
-        }else{
+        }
+        else if(actionSelect == 'a' ||
+                actionSelect == 'A' ||
+                actionSelect == 's' ||
+                actionSelect == 'S' ||
+                actionSelect == 'w' ||
+                actionSelect == 'W' ||
+                actionSelect == 'x' ||
+                actionSelect == 'X' ||
+                actionSelect == 'd' ||
+                actionSelect == 'D' ||
+                actionSelect == 'f' ||
+                actionSelect == 'F' ){
             faceSelected = actionSelect;
         } 
-   
-        printf("\033[2J");
-        printf("\033[%d;%dH", 0, 0);
     }   
 }
