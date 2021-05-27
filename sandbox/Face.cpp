@@ -135,7 +135,7 @@ int Face::printFace()
     for(int i = 0; i < 9; i++)
     {
         if(i == 0 || i == 3 || i == 6)
-            std::cout << "                               "; 
+            std::cout << " |                              "; 
         
         Colors pieceColor = this-> getColor(i);
         switch(pieceColor)
@@ -166,8 +166,6 @@ int Face::printFace()
    
         }
         if(i == 2 || i == 5 || i == 8)
-            std::cout << std::endl << std::endl;
+            std::cout <<"                                    |"<< std::endl <<" |                                                                              | "<< std::endl;
     }
-    std::cout << std::endl;
-
 }
