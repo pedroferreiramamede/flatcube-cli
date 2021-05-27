@@ -9,7 +9,8 @@ public:
     Cube();
     int InitializeCube();
     int rotateFace(Colors, char);
-
+    int rotateFaceToPrint(Colors, char);
+ 
     Face faceBranca;
     Face faceAzul;
     Face faceVerde;

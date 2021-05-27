@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Cube.hpp"
 #include <stdio.h>
+#include <cctype>
 
 int startUI(Cube &cubo)
 {
@@ -30,29 +31,30 @@ int startUI(Cube &cubo)
         std::cout << " |                                                                              | " << std::endl;
         std::cout << " |                                                                              | " << std::endl;
 
+        faceSelected = toupper(faceSelected);
         switch(faceSelected)
         {
-          case 's':
           case 'S':
              cubo.faceBranca.printFace();
              break;
-          case 'w':
           case 'W':
+             cubo.rotateFaceToPrint(AZUL, 'r');cubo.rotateFaceToPrint(AZUL, 'r');
              cubo.faceAzul.printFace();
+             cubo.rotateFaceToPrint(AZUL, 'r');cubo.rotateFaceToPrint(AZUL, 'r');
              break;
-          case 'x':
           case 'X':
              cubo.faceVerde.printFace();
              break;
-          case 'd':
           case 'D':
+             cubo.rotateFaceToPrint(VERMELHO, 'l');
              cubo.faceVermelha.printFace();
+             cubo.rotateFaceToPrint(VERMELHO, 'r');
              break;
-          case 'a':
           case 'A':
+             cubo.rotateFaceToPrint(LARANJA, 'r');
              cubo.faceLaranja.printFace();
+             cubo.rotateFaceToPrint(LARANJA, 'l'); 
              break;
-          case 'f':
           case 'F':
              cubo.faceAmarela.printFace();
              break;
@@ -60,16 +62,46 @@ int startUI(Cube &cubo)
 
         std::cout << " |                                                                              | " << std::endl;
         std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
-        std::cout << " | Escolha a face que deseja ver ou < > para rotacionar:                        | " << std::endl;
+        std::cout << " | Escolha a face que deseja ver ou < > para rotacionar, ou M para menu:        | " << std::endl;
         std::cout << " +-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -+ " << std::endl;
         std::cout << " |                                                                              | " << std::endl;
-        std::cout << " |     " << "\033[0;37;44m" << " W " << "\033[0m" <<
-                     "                                                                      |" << std::endl;
-        std::cout << " |  \033[0;37;45m"  << " A " << "\033[0m" << "\033[0;30;107m" << " S " << "\033[0m" 
+        if(faceSelected == 'W'){ 
+        std::cout << " |     " << "\033[0;37;44m" << "[W]" << "\033[0m" <<
+                     "                                                                      |" << std::endl;}
+        else{        std::cout << " |     " << "\033[0;37;44m" << " W " << "\033[0m" <<
+                     "                                                                      |" << std::endl;}
+        if(faceSelected == 'A'){
+        std::cout << " |  \033[0;37;45m"  << "[A]" << "\033[0m" << "\033[0;30;107m" << " S " << "\033[0m" 
                   << "\033[0;37;41m"  << " D " << "\033[0m" << "\033[0;37;43m" << " F " << "\033[0m" << 
-                     "                                                                | " << std::endl;
-        std::cout << " |     " << "\033[0;37;42m" << " X " << "\033[0m" << 
-                     "                                                                      |" << std::endl;
+                     "                                                                | " << std::endl;}
+
+        else if(faceSelected == 'S'){
+        std::cout << " |  \033[0;37;45m"  << " A " << "\033[0m" << "\033[0;30;107m" << "[S]" << "\033[0m" 
+                  << "\033[0;37;41m"  << " D " << "\033[0m" << "\033[0;37;43m" << " F " << "\033[0m" <<
+                     "                                                                | " << std::endl;}
+ 
+        else if(faceSelected == 'D'){
+        std::cout << " |  \033[0;37;45m"  << " A " << "\033[0m" << "\033[0;30;107m" << " S " << "\033[0m" 
+                  << "\033[0;37;41m"  << "[D]" << "\033[0m" << "\033[0;37;43m" << " F " << "\033[0m" <<
+                     "                                                                | " << std::endl;}
+
+        else if(faceSelected == 'F'){
+        std::cout << " |  \033[0;37;45m"  << " A " << "\033[0m" << "\033[0;30;107m" << " S " << "\033[0m" 
+                  << "\033[0;37;41m"  << " D " << "\033[0m" << "\033[0;37;43m" << "[F]" << "\033[0m" <<
+                     "                                                                | " << std::endl;}
+
+        else{
+        std::cout << " |  \033[0;37;45m"  << " A " << "\033[0m" << "\033[0;30;107m" << " S " << "\033[0m"
+                  << "\033[0;37;41m"  << " D " << "\033[0m" << "\033[0;37;43m" << " F " << "\033[0m" <<
+                     "                                                                | " << std::endl;}
+
+        if(faceSelected == 'X'){
+        std::cout << " |     " << "\033[0;37;42m" << "[X]" << "\033[0m" << 
+                     "                                                                      |" << std::endl;}
+        else{
+        std::cout << " |     " << "\033[0;37;42m" << " X " << "\033[0m" <<
+                     "                                                                      |" << std::endl;}
+ 
         std::cout << " |                                                                              | " << std::endl;
         std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
      
