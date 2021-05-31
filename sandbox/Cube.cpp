@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Cube.hpp"
+#include <stdlib.h>
 
 Cube::Cube()
 {
@@ -14,6 +15,8 @@ int Cube::InitializeCube(){
     this->faceVermelha.setColor(VERMELHO);
     this->faceLaranja.setColor(LARANJA);
     this->faceAmarela.setColor(AMARELO);
+
+    this->setMovimentos(0);
 }
 
 int Cube::rotateFace(Colors color, char orientation)
@@ -44,7 +47,7 @@ int Cube::rotateFace(Colors color, char orientation)
 
               if(orientation == 'r'){
                   //rotate the face itself
-                  std::cout << "Rotating White Face Right" << std::endl;
+                  //std::cout << "Rotating White Face Right" << std::endl;
                   this->faceBranca.setColor(0, tempfaceColorBranca[6]);  
                   this->faceBranca.setColor(1, tempfaceColorBranca[3]); 
                   this->faceBranca.setColor(2, tempfaceColorBranca[0]); 
@@ -70,7 +73,7 @@ int Cube::rotateFace(Colors color, char orientation)
 
               } else {
                   //rotate to left is the same that rotate to right 3 times:
-                  std::cout << "Rotating White Face Left" << std::endl;
+                  //std::cout << "Rotating White Face Left" << std::endl;
                   for(int i = 0; i < 3; i++)
                       this->rotateFace(BRANCO, 'r'); 
               }
@@ -79,7 +82,7 @@ int Cube::rotateFace(Colors color, char orientation)
           case VERDE:
 
               if(orientation == 'r'){
-                  std::cout << "Rotating Green Face Right" << std::endl;
+                  //std::cout << "Rotating Green Face Right" << std::endl;
                   //rotate the face itself
                   this->faceVerde.setColor(0, tempfaceColorVerde[6]);
                   this->faceVerde.setColor(1, tempfaceColorVerde[3]);
@@ -106,7 +109,7 @@ int Cube::rotateFace(Colors color, char orientation)
 
               } else {
                   //rotate to left is the same that rotate to right 3 times:
-                  std::cout << "Rotating Green Face Left" << std::endl;
+                  //std::cout << "Rotating Green Face Left" << std::endl;
                   for(int i = 0; i < 3; i++)
                       this->rotateFace(VERDE, 'r');
               }
@@ -115,7 +118,7 @@ int Cube::rotateFace(Colors color, char orientation)
           case AZUL:
 
               if(orientation == 'r'){
-                  std::cout << "Rotating Blue Face Right" << std::endl;
+                  //std::cout << "Rotating Blue Face Right" << std::endl;
                   //rotate the face itself
                   this->faceAzul.setColor(0, tempfaceColorAzul[6]);
                   this->faceAzul.setColor(1, tempfaceColorAzul[3]);
@@ -142,7 +145,7 @@ int Cube::rotateFace(Colors color, char orientation)
 
               } else {
                   //rotate to left is the same that rotate to right 3 times:
-                  std::cout << "Rotating Blue Face Left" << std::endl;
+                  //std::cout << "Rotating Blue Face Left" << std::endl;
                   for(int i = 0; i < 3; i++)
                       this->rotateFace(AZUL, 'r');
               }
@@ -151,7 +154,7 @@ int Cube::rotateFace(Colors color, char orientation)
           case VERMELHO:
            
               if(orientation == 'r'){
-                  std::cout << "Rotating Red Face Right" << std::endl;
+                  //std::cout << "Rotating Red Face Right" << std::endl;
                   //rotate the face itself
                   this->faceVermelha.setColor(0, tempfaceColorVermelha[6]);
                   this->faceVermelha.setColor(1, tempfaceColorVermelha[3]);
@@ -178,7 +181,7 @@ int Cube::rotateFace(Colors color, char orientation)
 
               } else {
                   //rotate to left is the same that rotate to right 3 times:
-                  std::cout << "Rotating Red Face Left" << std::endl;
+                  //std::cout << "Rotating Red Face Left" << std::endl;
                   for(int i = 0; i < 3; i++)
                       this->rotateFace(VERMELHO, 'r');
               }
@@ -187,7 +190,7 @@ int Cube::rotateFace(Colors color, char orientation)
           case LARANJA:
 
               if(orientation == 'r'){
-                  std::cout << "Rotating Orange Face Right" << std::endl;
+                  //std::cout << "Rotating Orange Face Right" << std::endl;
                   //rotate the face itself
                   this->faceLaranja.setColor(0, tempfaceColorLaranja[6]);
                   this->faceLaranja.setColor(1, tempfaceColorLaranja[3]);
@@ -214,7 +217,7 @@ int Cube::rotateFace(Colors color, char orientation)
 
               } else {
                   //rotate to left is the same that rotate to right 3 times:
-                  std::cout << "Rotating Orange Face Left" << std::endl;
+                  //std::cout << "Rotating Orange Face Left" << std::endl;
                   for(int i = 0; i < 3; i++)
                       this->rotateFace(LARANJA, 'r');
               }
@@ -223,7 +226,7 @@ int Cube::rotateFace(Colors color, char orientation)
           case AMARELO:
 
               if(orientation == 'r'){
-                  std::cout << "Rotating Yellow Face Right" << std::endl;
+                  //std::cout << "Rotating Yellow Face Right" << std::endl;
                   //rotate the face itself
                   this->faceAmarela.setColor(0, tempfaceColorAmarela[6]);
                   this->faceAmarela.setColor(1, tempfaceColorAmarela[3]);
@@ -250,7 +253,7 @@ int Cube::rotateFace(Colors color, char orientation)
 
               } else {
                   //rotate to left is the same that rotate to right 3 times:
-                  std::cout << "Rotating Yellow Face Left" << std::endl;
+                  //std::cout << "Rotating Yellow Face Left" << std::endl;
                   for(int i = 0; i < 3; i++)
                       this->rotateFace(AMARELO, 'r');
               }
@@ -417,5 +420,31 @@ int Cube::rotateFaceToPrint(Colors color, char orientation)
             break;
 
         }
-    
 }
+
+int Cube::Scramble(){
+    char orientation;
+    int face;
+ 
+    for(int i = 0; i < 50; i++){
+        face = rand() % 6;
+
+        ((rand() % 11) % 2 == 0) ? orientation = 'r' : orientation = 'l';
+        //std::cout << "face: " << face << "" << orientation << std::endl;
+           
+	this->rotateFace((Colors)face, orientation);
+    }
+}
+
+int Cube::getMovimentos(){
+    return this-> Movimentos;
+}
+
+int Cube::setMovimentos(int moves){
+   this->Movimentos = moves;
+}
+
+int Cube::incMovimentos(){
+   this->Movimentos++;
+}
+

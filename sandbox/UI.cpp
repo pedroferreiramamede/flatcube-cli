@@ -2,15 +2,19 @@
 #include "Cube.hpp"
 #include <stdio.h>
 #include <cctype>
+#include <unistd.h>
+#include <string>
 
 int startUI(Cube &cubo)
 {
-   /* First, clear the screen */
+    char actionSelect = 's';
+    char faceSelected = 's';
+    bool menuSelected = false;
+
+    /* First, clear the screen */
     printf("\033[2J");
     printf("\033[%d;%dH", 0, 0);
 
-    char actionSelect = 's';
-    char faceSelected = 's';
     while(1)
     {
         printf("\033[2J");
@@ -65,11 +69,23 @@ int startUI(Cube &cubo)
         std::cout << " | Escolha a face que deseja ver ou < > para rotacionar, ou M para menu:        | " << std::endl;
         std::cout << " +-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -+ " << std::endl;
         std::cout << " |                                                                              | " << std::endl;
+
+        /* Print the W ************************************************************************************************/
         if(faceSelected == 'W'){ 
         std::cout << " |     " << "\033[0;37;44m" << "[W]" << "\033[0m" <<
-                     "                                                                      |" << std::endl;}
-        else{        std::cout << " |     " << "\033[0;37;44m" << " W " << "\033[0m" <<
-                     "                                                                      |" << std::endl;}
+                     "                                             Movimentos: " << cubo.getMovimentos();
+        for(int i = 0; i < (13-(std::to_string(cubo.getMovimentos()).length())); i++)
+            std::cout << " ";    
+        std::cout << "|" << std::endl;}
+        else{        
+        std::cout << " |     " << "\033[0;37;44m" << " W " << "\033[0m" <<
+                     "                                             Movimentos: " << cubo.getMovimentos();
+        for(int i = 0; i < (13-(std::to_string(cubo.getMovimentos()).length())); i++)
+            std::cout << " ";
+        std::cout << "|" << std::endl;}
+        /**************************************************************************************************************/
+ 
+        /* Print the ASDF**********************************************************************************************/
         if(faceSelected == 'A'){
         std::cout << " |  \033[0;37;45m"  << "[A]" << "\033[0m" << "\033[0;30;107m" << " S " << "\033[0m" 
                   << "\033[0;37;41m"  << " D " << "\033[0m" << "\033[0;37;43m" << " F " << "\033[0m" << 
@@ -94,45 +110,66 @@ int startUI(Cube &cubo)
         std::cout << " |  \033[0;37;45m"  << " A " << "\033[0m" << "\033[0;30;107m" << " S " << "\033[0m"
                   << "\033[0;37;41m"  << " D " << "\033[0m" << "\033[0;37;43m" << " F " << "\033[0m" <<
                      "                                                                | " << std::endl;}
+        /**************************************************************************************************************/
 
+        /* Print the X ************************************************************************************************/
         if(faceSelected == 'X'){
         std::cout << " |     " << "\033[0;37;42m" << "[X]" << "\033[0m" << 
                      "                                                                      |" << std::endl;}
         else{
         std::cout << " |     " << "\033[0;37;42m" << " X " << "\033[0m" <<
                      "                                                                      |" << std::endl;}
- 
+        /**************************************************************************************************************/
+        
         std::cout << " |                                                                              | " << std::endl;
         std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
      
-        std::cin >> actionSelect;
+        if(actionSelect == 'M' || actionSelect == 'm' || menuSelected){
+        menuSelected = true; 
+        std::cout << " |################################## MENU ######################################| " << std::endl;
+        std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
+        std::cout << " | (1)Embaralhar                                                                | " << std::endl;
+        std::cout << " |                                                                              | " << std::endl;
+        std::cout << " |                                                                              | " << std::endl;
+        std::cout << " |                                                                              | " << std::endl;
+        std::cout << " |                                                                              | " << std::endl;
+        std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
+        }
         
+        std::cin >> actionSelect;
+
         if(actionSelect == '<' || actionSelect == ','){
             switch(faceSelected)
             {
               case 's':
               case 'S':
                  cubo.rotateFace(BRANCO, 'l');
+                 cubo.incMovimentos();
                  break;
               case 'w':
               case 'W':
                  cubo.rotateFace(AZUL, 'l');
+                 cubo.incMovimentos();
                  break;
               case 'x':
               case 'X':
                  cubo.rotateFace(VERDE, 'l');
+                 cubo.incMovimentos();
                  break;
               case 'd':
               case 'D':
                  cubo.rotateFace(VERMELHO, 'l');
+                 cubo.incMovimentos();
                  break;
               case 'a':
               case 'A':
                  cubo.rotateFace(LARANJA, 'l');
+                 cubo.incMovimentos();
                  break;
               case 'f':
               case 'F':
                  cubo.rotateFace(AMARELO, 'l');
+                 cubo.incMovimentos();
                  break;
             }    
         }
@@ -142,26 +179,32 @@ int startUI(Cube &cubo)
               case 's':
               case 'S':
                  cubo.rotateFace(BRANCO, 'r');
+                 cubo.incMovimentos();
                  break;
               case 'w':
               case 'W':
                  cubo.rotateFace(AZUL, 'r');
+                 cubo.incMovimentos();
                  break;
               case 'x':
               case 'X':
                  cubo.rotateFace(VERDE, 'r');
+                 cubo.incMovimentos();
                  break;
               case 'd':
               case 'D':
                  cubo.rotateFace(VERMELHO, 'r');
+                 cubo.incMovimentos();
                  break;
               case 'a':
               case 'A':
                  cubo.rotateFace(LARANJA, 'r');
+                 cubo.incMovimentos();
                  break;
               case 'f':
               case 'F':
                  cubo.rotateFace(AMARELO, 'r');
+                 cubo.incMovimentos();
                  break;
             }
 
@@ -179,6 +222,13 @@ int startUI(Cube &cubo)
                 actionSelect == 'f' ||
                 actionSelect == 'F' ){
             faceSelected = actionSelect;
+        }
+
+        else if(menuSelected && actionSelect == '1'){
+            //std::cout << "EMBARALHANDO..." << std::endl;
+            cubo.Scramble();
+            //sleep(5);
+            menuSelected = false;             
         } 
     }   
 }

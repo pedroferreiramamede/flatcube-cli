@@ -10,6 +10,10 @@ public:
     int InitializeCube();
     int rotateFace(Colors, char);
     int rotateFaceToPrint(Colors, char);
+    int Scramble();
+    int getMovimentos();
+    int setMovimentos(int);
+    int incMovimentos();
  
     Face faceBranca;
     Face faceAzul;
@@ -17,6 +21,7 @@ public:
     Face faceVermelha;
     Face faceLaranja;
     Face faceAmarela;
+    int Movimentos;
 };
 
 #endif
