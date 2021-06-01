@@ -129,8 +129,8 @@ int startUI(Cube &cubo)
         std::cout << " |################################## MENU ######################################| " << std::endl;
         std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
         std::cout << " | (1)Embaralhar                                                                | " << std::endl;
-        std::cout << " |                                                                              | " << std::endl;
-        std::cout << " |                                                                              | " << std::endl;
+        std::cout << " | (2)Salvar                                                                    | " << std::endl;
+        std::cout << " | (3)Carregar                                                                  | " << std::endl;
         std::cout << " |                                                                              | " << std::endl;
         std::cout << " |                                                                              | " << std::endl;
         std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
@@ -230,5 +230,13 @@ int startUI(Cube &cubo)
             //sleep(5);
             menuSelected = false;             
         } 
+        else if(menuSelected && actionSelect == '2'){
+            cubo.saveCube();
+            menuSelected = false;             
+        } 
+        else if(menuSelected && actionSelect == '3'){
+            cubo.loadCube();
+            menuSelected = false; 
+        }            
     }   
 }

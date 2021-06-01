@@ -14,6 +14,8 @@ public:
     int getMovimentos();
     int setMovimentos(int);
     int incMovimentos();
+    int saveCube();
+    int loadCube(); 
  
     Face faceBranca;
     Face faceAzul;

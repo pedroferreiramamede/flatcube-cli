@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Cube.hpp"
 #include <stdlib.h>
+#include <fstream>
+#include <ctime>
 
 Cube::Cube()
 {
@@ -448,3 +450,67 @@ int Cube::incMovimentos(){
    this->Movimentos++;
 }
 
+int Cube::saveCube(){
+    //Create a file to write the faces colors
+    std::time_t now = std::time(NULL);
+    std::tm * ptm = std::localtime(&now);
+    char buffer[32];
+    std::strftime(buffer, 32, "saves/%Y%m%d_%H_%M_%S", ptm);  
+
+    std::ofstream outfile (buffer);
+   
+    for(int i = 0; i < 9; i++){
+        outfile << std::to_string(this->faceBranca.getColor(i)) << ",";
+    }
+    for(int i = 0; i < 9; i++){
+        outfile << std::to_string(this->faceAzul.getColor(i)) << ",";
+    }
+    for(int i = 0; i < 9; i++){
+        outfile << std::to_string(this->faceVerde.getColor(i)) << ",";
+    }
+    for(int i = 0; i < 9; i++){
+        outfile << std::to_string(this->faceVermelha.getColor(i)) << ",";
+    }
+    for(int i = 0; i < 9; i++){
+        outfile << std::to_string(this->faceLaranja.getColor(i)) << ",";
+    }
+    for(int i = 0; i < 9; i++){
+        outfile << std::to_string(this->faceAmarela.getColor(i)) << ",";
+    }
+}
+
+int Cube::loadCube(){
+    //Verify if the file is there
+    std::ifstream file("test.txt");
+    std::string data = "";
+
+    if(file.is_open()){
+        for(int i = 0; i < 9; i++){
+            getline(file, data, ',');
+            this->faceBranca.setColor(i, (Colors) stoi(data));   
+        }
+        for(int i = 0; i < 9; i++){
+            getline(file, data, ',');
+            this->faceAzul.setColor(i, (Colors) stoi(data));   
+        }
+        for(int i = 0; i < 9; i++){
+            getline(file, data, ',');
+            this->faceVerde.setColor(i, (Colors) stoi(data));   
+        }
+        for(int i = 0; i < 9; i++){
+            getline(file, data, ',');
+            this->faceVermelha.setColor(i, (Colors) stoi(data));   
+        }
+        for(int i = 0; i < 9; i++){
+            getline(file, data, ',');
+            this->faceLaranja.setColor(i, (Colors) stoi(data));   
+        }
+        for(int i = 0; i < 9; i++){
+            getline(file, data, ',');
+            this->faceAmarela.setColor(i, (Colors) stoi(data));   
+        }
+                 
+    } else {
+        std::cout << "Arquivo não encontrado!" << std::endl;
+    }
+}
