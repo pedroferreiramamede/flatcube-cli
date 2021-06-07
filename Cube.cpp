@@ -479,6 +479,8 @@ int Cube::saveCube(){
     for(int i = 0; i < 9; i++){
         outfile << std::to_string(this->faceAmarela.getColor(i)) << ",";
     }
+    outfile << std::to_string(this->getMovimentos());
+    outfile.close();
 }
 
 int Cube::loadCube(std::string fileChoose)
@@ -514,7 +516,11 @@ int Cube::loadCube(std::string fileChoose)
             getline(file, data, ',');
             this->faceAmarela.setColor(i, (Colors) stoi(data));   
         }
-                 
+        getline(file, data, ',');
+        this->setMovimentos(stoi(data));
+
+        file.close();
+                        
     } else {
         std::cout << "Arquivo não encontrado!" << std::endl;
     }

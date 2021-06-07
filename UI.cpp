@@ -273,7 +273,7 @@ int printSavedFiles()
     while(!ifs.eof())
     {
         getline(ifs,text);
-        if(!(text.empty()))
+        if(!(text.empty()) && text.compare(".gitignore"))
             std::cout << " | " << "(" << i << ") "  << text << "                                                        |" << std::endl;
         i++;
     }
