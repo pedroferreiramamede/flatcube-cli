@@ -427,6 +427,8 @@ int Cube::rotateFaceToPrint(Colors color, char orientation)
 int Cube::Scramble(){
     char orientation;
     int face;
+
+    srand(time(NULL));
  
     for(int i = 0; i < 50; i++){
         face = rand() % 6;
@@ -479,9 +481,12 @@ int Cube::saveCube(){
     }
 }
 
-int Cube::loadCube(){
+int Cube::loadCube(std::string fileChoose)
+{
     //Verify if the file is there
-    std::ifstream file("test.txt");
+    std::string fileFullPath = "saves/";
+    fileFullPath.append(fileChoose);
+    std::ifstream file(fileFullPath);
     std::string data = "";
 
     if(file.is_open()){

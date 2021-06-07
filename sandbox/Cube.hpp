@@ -15,7 +15,7 @@ public:
     int setMovimentos(int);
     int incMovimentos();
     int saveCube();
-    int loadCube(); 
+    int loadCube(std::string); 
  
     Face faceBranca;
     Face faceAzul;

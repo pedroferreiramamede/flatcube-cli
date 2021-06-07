@@ -4,12 +4,17 @@
 #include <cctype>
 #include <unistd.h>
 #include <string>
+#include <fstream>
+
+int printSavedFiles();
+std::string findFile(char fileChoose);
 
 int startUI(Cube &cubo)
 {
     char actionSelect = 's';
     char faceSelected = 's';
     bool menuSelected = false;
+    bool listFiles    = false;
 
     /* First, clear the screen */
     printf("\033[2J");
@@ -124,16 +129,25 @@ int startUI(Cube &cubo)
         std::cout << " |                                                                              | " << std::endl;
         std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
      
-        if(actionSelect == 'M' || actionSelect == 'm' || menuSelected){
-        menuSelected = true; 
-        std::cout << " |################################## MENU ######################################| " << std::endl;
-        std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
-        std::cout << " | (1)Embaralhar                                                                | " << std::endl;
-        std::cout << " | (2)Salvar                                                                    | " << std::endl;
-        std::cout << " | (3)Carregar                                                                  | " << std::endl;
-        std::cout << " |                                                                              | " << std::endl;
-        std::cout << " |                                                                              | " << std::endl;
-        std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
+        if(actionSelect == 'M' || actionSelect == 'm' || (menuSelected && !listFiles)){
+            menuSelected = true; 
+            std::cout << " |################################## MENU ######################################| " << std::endl;
+            std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
+            std::cout << " | (1)Embaralhar                                                                | " << std::endl;
+            std::cout << " | (2)Salvar                                                                    | " << std::endl;
+            std::cout << " | (3)Carregar                                                                  | " << std::endl;
+            std::cout << " |                                                                              | " << std::endl;
+            std::cout << " |                                                                              | " << std::endl;
+            std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
+        } 
+        else if(menuSelected && listFiles){
+            std::cout << " |################################## MENU ######################################| " << std::endl;
+            std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
+            std::cout << " | Selecione um dos arquivos disponíveis:                                       | " << std::endl;
+            std::cout << " |                                                                              | " << std::endl;
+            printSavedFiles();
+            std::cout << " |                                                                              | " << std::endl;
+            std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
         }
         
         std::cin >> actionSelect;
@@ -224,19 +238,64 @@ int startUI(Cube &cubo)
             faceSelected = actionSelect;
         }
 
-        else if(menuSelected && actionSelect == '1'){
-            //std::cout << "EMBARALHANDO..." << std::endl;
+        else if(menuSelected && actionSelect == '1' && !listFiles){
             cubo.Scramble();
-            //sleep(5);
             menuSelected = false;             
         } 
-        else if(menuSelected && actionSelect == '2'){
+        else if(menuSelected && actionSelect == '2' && !listFiles){
             cubo.saveCube();
             menuSelected = false;             
         } 
-        else if(menuSelected && actionSelect == '3'){
-            cubo.loadCube();
-            menuSelected = false; 
+        else if(menuSelected && actionSelect == '3' && !listFiles){
+            //First, list the availbles files
+            listFiles = true;
+            system("ls -A1 saves >> listfiles"); 
+ 
+            //cubo.loadCube();
+            //menuSelected = false; 
+        }
+        else if((menuSelected && listFiles)){
+            std::cout << "INSIDEEEEEEEE" << std::endl;
+            cubo.loadCube(findFile(actionSelect));
+            
+            listFiles = false;
+            menuSelected = false;             
         }            
     }   
 }
+
+int printSavedFiles()
+{
+    std::string text;
+    std::ifstream ifs("listfiles");
+
+    int i = 1;
+    while(!ifs.eof())
+    {
+        getline(ifs,text);
+        if(!(text.empty()))
+            std::cout << " | " << "(" << i << ") "  << text << "                                                        |" << std::endl;
+        i++;
+    }
+}
+
+std::string findFile(char fileChoose)
+{
+    std::string text;
+    std::ifstream ifs("listfiles");
+    int fileChooseNumber = (fileChoose - '0');
+
+    int i = 1;
+    while(!ifs.eof())
+    {
+        getline(ifs,text);
+        if(i == fileChooseNumber){
+            system("rm listfiles");
+            std::cout << "FILE NAME: "<< text << std::endl;
+            return text;
+        }
+        i++;
+    }
+
+}
+
