@@ -149,10 +149,11 @@ int startUI(Cube &cubo)
             std::cout << " |                                                                              | " << std::endl;
             std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
         }
-        
+
         std::cin >> actionSelect;
 
         if(actionSelect == '<' || actionSelect == ','){
+            cubo.saveLastMove();            
             switch(faceSelected)
             {
               case 's':
@@ -188,6 +189,7 @@ int startUI(Cube &cubo)
             }    
         }
         else if(actionSelect == '>' || actionSelect == '.'){
+            cubo.saveLastMove();
             switch(faceSelected)
             {
               case 's':
@@ -221,7 +223,6 @@ int startUI(Cube &cubo)
                  cubo.incMovimentos();
                  break;
             }
-
         }
         else if(actionSelect == 'a' ||
                 actionSelect == 'A' ||
@@ -237,7 +238,9 @@ int startUI(Cube &cubo)
                 actionSelect == 'F' ){
             faceSelected = actionSelect;
         }
-
+        else if(actionSelect == 'u' || actionSelect == 'U'){
+            cubo.undoLastMove();
+        }
         else if(menuSelected && actionSelect == '1' && !listFiles){
             cubo.Scramble();
             menuSelected = false;             

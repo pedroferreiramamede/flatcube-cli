@@ -2,6 +2,8 @@
 #define CUBE_H
 
 #include "Face.hpp"
+#include <array>
+#include <stack>
 
 class Cube
 {
@@ -16,7 +18,10 @@ public:
     int incMovimentos();
     int saveCube();
     int loadCube(std::string); 
- 
+    int saveLastMove();
+    int undoLastMove(); 
+    std::stack<std::array<Colors,54>> facesColors;
+
     Face faceBranca;
     Face faceAzul;
     Face faceVerde;

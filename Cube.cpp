@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <fstream>
 #include <ctime>
+#include <unistd.h>
+#include <array>
+#include <stack>
 
 Cube::Cube()
 {
@@ -523,5 +526,83 @@ int Cube::loadCube(std::string fileChoose)
                         
     } else {
         std::cout << "Arquivo não encontrado!" << std::endl;
+    }
+}
+
+int Cube::saveLastMove()
+{
+    std::cout << "Saving Move" << std::endl;
+/*
+    this->facesColors.push({BRANCO,AZUL,VERDE});
+    std::array<Colors,54> a = {BRANCO};
+    a = facesColors.top();
+    for(int i = 0; i < 5; i++){
+        std::cout << a[i] << std::endl;
+    }
+*/
+        
+    std::array<Colors,54> tempArray = {BRANCO};
+    int j = 0;
+    for(int i = 0; i < 9; i++){
+        tempArray.at(j) = this->faceBranca.getColor(i);
+        j++; 
+    }
+    for(int i = 0; i < 9; i++){
+        tempArray.at(j) = this->faceAzul.getColor(i);
+        j++; 
+    }
+    for(int i = 0; i < 9; i++){
+        tempArray.at(j) = this->faceVerde.getColor(i);
+        j++; 
+    }
+    for(int i = 0; i < 9; i++){
+        tempArray.at(j) = this->faceVermelha.getColor(i);
+        j++; 
+    }
+    for(int i = 0; i < 9; i++){
+        tempArray.at(j) = this->faceLaranja.getColor(i);
+        j++; 
+    }
+    for(int i = 0; i < 9; i++){
+        tempArray.at(j) = this->faceAmarela.getColor(i);
+        j++; 
+    }
+
+    facesColors.push(tempArray);   
+}
+
+int Cube::undoLastMove()
+{
+    if(facesColors.size() > 0){
+        std::array<Colors,54> tempArray = {BRANCO};
+        int j = 0;
+
+        tempArray = facesColors.top();
+        
+        for(int i = 0; i < 9; i++){
+            this->faceBranca.setColor(i, tempArray[j]);
+            j++; 
+        }   
+        for(int i = 0; i < 9; i++){
+            this->faceAzul.setColor(i, tempArray[j]);
+            j++; 
+        }   
+        for(int i = 0; i < 9; i++){
+            this->faceVerde.setColor(i, tempArray[j]);
+            j++; 
+        }   
+        for(int i = 0; i < 9; i++){
+            this->faceVermelha.setColor(i, tempArray[j]);
+            j++; 
+        }   
+        for(int i = 0; i < 9; i++){
+            this->faceAmarela.setColor(i, tempArray[j]);
+            j++; 
+        }   
+        for(int i = 0; i < 9; i++){
+            this->faceLaranja.setColor(i, tempArray[j]);
+            j++; 
+        }  
+        facesColors.pop();
     }
 }
