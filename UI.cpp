@@ -15,6 +15,7 @@ int startUI(Cube &cubo)
     char faceSelected = 's';
     bool menuSelected = false;
     bool listFiles    = false;
+    bool aboutGame    = false;
 
     /* First, clear the screen */
     printf("\033[2J");
@@ -129,14 +130,14 @@ int startUI(Cube &cubo)
         std::cout << " |                                                                              | " << std::endl;
         std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
      
-        if(actionSelect == 'M' || actionSelect == 'm' || (menuSelected && !listFiles)){
+        if(actionSelect == 'M' || actionSelect == 'm' || (menuSelected && !listFiles && !aboutGame)){
             menuSelected = true; 
             std::cout << " |################################## MENU ######################################| " << std::endl;
             std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
             std::cout << " | (1)Embaralhar                                                                | " << std::endl;
             std::cout << " | (2)Salvar                                                                    | " << std::endl;
             std::cout << " | (3)Carregar                                                                  | " << std::endl;
-            std::cout << " |                                                                              | " << std::endl;
+            std::cout << " | (?)Sobre o jogo                                                              | " << std::endl;
             std::cout << " |                                                                              | " << std::endl;
             std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
         } 
@@ -149,6 +150,16 @@ int startUI(Cube &cubo)
             std::cout << " |                                                                              | " << std::endl;
             std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
         }
+   	else if(menuSelected && aboutGame){
+	    std::cout << " |############################## FLAT CUBE - CLI ###############################| " << std::endl;
+            std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
+            std::cout << " |Github do projeto: https://github.com/pedroferreiramamede/flatcube-cli/issues | " << std::endl;
+            std::cout << " |                                                                              | " << std::endl;
+            std::cout << " |                                                                              | " << std::endl;
+            std::cout << " |                                                                              | " << std::endl;
+            std::cout << " |                                                                              | " << std::endl;
+            std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
+	}
 
         std::cin >> actionSelect;
 
@@ -241,6 +252,9 @@ int startUI(Cube &cubo)
         else if(actionSelect == 'u' || actionSelect == 'U'){
             cubo.undoLastMove();
         }
+        else if(actionSelect == '?'){
+            aboutGame = true;
+        }
         else if(menuSelected && actionSelect == '1' && !listFiles){
             cubo.Scramble();
             menuSelected = false;             
@@ -250,17 +264,13 @@ int startUI(Cube &cubo)
             menuSelected = false;             
         } 
         else if(menuSelected && actionSelect == '3' && !listFiles){
-            //First, list the availbles files
             listFiles = true;
-            system("ls -A1 saves >> listfiles"); 
- 
-            //cubo.loadCube();
-            //menuSelected = false; 
+            system("ls -A1 saves >> listfiles");
         }
         else if((menuSelected && listFiles)){
             std::cout << "INSIDEEEEEEEE" << std::endl;
             cubo.loadCube(findFile(actionSelect));
-            
+           
             listFiles = false;
             menuSelected = false;             
         }            
