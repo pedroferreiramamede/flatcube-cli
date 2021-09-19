@@ -71,7 +71,7 @@ int startUI(Cube &cubo)
 
         std::cout << " |                                                                              | " << std::endl;
         std::cout << " +------------------------------------------------------------------------------+ " << std::endl;
-        std::cout << " | Escolha a face que deseja ver ou < > para rotacionar, ou M para menu:        | " << std::endl;
+        std::cout << " | Escolha a face que deseja ver, < > para rotacionar, (U)ndo, ou (M)enu:       | " << std::endl;
         std::cout << " +-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - -+ " << std::endl;
         std::cout << " |                                                                              | " << std::endl;
 
